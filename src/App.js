@@ -24,23 +24,31 @@ class App extends Component {
     });
   }
   
-  getUserChoice = (choice) => {
-    console.log(choice.target.value);
+  getUserChoice = (event) => {
+    console.log(event.target.value);
     this.setState({
-      userChoice: choice.target.value
-    })
+      userChoice: ''
+    });
+    this.setState({
+      userChoice: event.target.value
+    });
+    // console.log(this.state.userChoice);
   }
 
-  setCompChoice = choice => {
-    const compChoiceNumber = Math.floor(Math.random() * this.state.options.length);
+  getCompChoice = (event) => {
+    const compChoiceKeys = Object.keys(this.state.options);
+    const compChoiceNumber = Math.floor(Math.random() * compChoiceKeys.length);
     console.log(compChoiceNumber);
+    console.log('here', compChoiceKeys[compChoiceNumber]);
     this.setState({
-      compChoice: this.state.options[compChoiceNumber].type
+      compChoice: compChoiceKeys[compChoiceNumber]
     })
+    console.log('now here', this.state.compChoice);
   }
+
 
   render() {
-    console.log(this.state.options.length);
+    // console.log(this.state.options[this.state.userChoice]);
     return (
       <div className="App">
         <header>
@@ -48,15 +56,22 @@ class App extends Component {
         </header>
         <main>
           <section>
-            <GameBoard userChoice={this.state.userChoice}/>
+            <GameBoard 
+            compChoice={this.state.options[this.state.compChoice]}
+            userChoice={this.state.options[this.state.userChoice]}
+            getCompChoice={this.getCompChoice} />
             {/* <Card imageSelection={this.state.userChoice}/> */}
             {/* <Card imageSelection={this.state.compChoice} /> */}
           </section>
           <section className='userOptions'>
-            {this.state.options.map((option) => {
+            {/* {this.state.options.map((option) => { */}
+            {Object.keys(this.state.options).map((option) => { 
+              // console.log(option); 
+              // console.log(this.state.options[option]);
               return <UserSelections
-              type={option.type} 
-              img={option.img}
+              // choiceObject={option}
+              type={this.state.options[option].type} 
+              img={this.state.options[option].img}
               getUserChoice={this.getUserChoice}
               />
             })}

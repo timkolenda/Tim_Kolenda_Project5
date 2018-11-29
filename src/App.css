@@ -37,3 +37,18 @@
     transition: 5s;
     transform-style: preserve-3d;
     position: relative; }
+    .cardContainer .playerCards__cardFlipper--active {
+      transform: rotateY(180deg); }
+    .cardContainer .playerCards__cardFlipper .card {
+      height: 200px;
+      width: 200px;
+      backface-visibility: hidden;
+      position: absolute;
+      top: 0;
+      left: 0; }
+      .cardContainer .playerCards__cardFlipper .card--front img {
+        backface-visibility: hidden; }
+      .cardContainer .playerCards__cardFlipper .card--back {
+        transform: rotateY(180deg); }
+        .cardContainer .playerCards__cardFlipper .card--back img {
+          backface-visibility: hidden; }

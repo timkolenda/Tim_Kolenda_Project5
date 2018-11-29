@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-
+import Cards from './Cards';
 
 class GameBoard extends Component {
     constructor() {
         super();
         this.state = {
             durationArray: [],
-            userCardFront: {img: 'assets/noun_puppy_1963353 copy.svg', alt: 'Default user image. A cute puppy.'},
-            userCardBack: '',
-            compCardFront: {img: 'assets/noun_Robot_855943 copy.svg', alt: 'Default computer image. A cute robot!'},
-            compCardBack: '',
+            userCardFront: {img: 'assets/noun_puppy_1963353.svg', alt: 'Default user image. A cute puppy.'},
+            userCardBack: {img: 'assets/noun_puppy_1963353.svg', alt: 'Default user image. A cute puppy.' },
+            compCardFront: {img: 'assets/noun_Robot_855943.svg', alt: 'Default computer image. A cute robot!'},
+            compCardBack: {img: 'assets/noun_Robot_855943.svg', alt: 'Default computer image. A cute robot!' }
         }
     }
     showUserChoice = (prop) => {
@@ -19,6 +19,9 @@ class GameBoard extends Component {
     }
     // showUserChoice({props.userChoice});
 
+    handleClick = () => {
+        this.props.getCompChoice();
+    }
 
 
     render() {
@@ -26,8 +29,16 @@ class GameBoard extends Component {
             <section className="gameBoard">
                 <h2>Game Board Area</h2>
                 <div className="playerCards">
-                    <Cards />
-                    <Cards />
+                    <Cards 
+                    choice={this.props.userChoice}
+                    front={this.state.userCardFront} 
+                    back={this.state.userCardBack}
+                    />
+                    
+                    <Cards 
+                    choice={this.props.compChoice}
+                    front={this.state.compCardFront}
+                    back={this.state.compCardBack}/>
                     {/* <div className="cardContainer">
                         <div className="playerCards__cardFlipper playerCards__cardFlipper--user">
                             <div class="card card--user card--front">

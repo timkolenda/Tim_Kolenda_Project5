@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
 
+
 //make a component that displays the cards
 
 const Cards = (props) => {
-
+    // console.log('this', props.front.img);
 
 
     return (
         <div className="cardContainer">
-            <div className="playerCards__cardFlipper playerCards__cardFlipper--user">
-                <div class="card card--user card--front">
-                    <img src={this.state.userCardFront.img} alt={this.state.userCardFront.alt} />
+            <div className={`playerCards__cardFlipper ${props.choice ? 'playerCards__cardFlipper--active' : ''}`}>
+                <div className="card card--front">
+                    <img src={props.front.img} alt={props.front.alt} />
                 </div>
-                <div class="card card--user card--back">
-                    <img src={this.state.userCardBack} alt="" />
+                <div className="card card--back">
+                    <img src={`${props.choice ? props.choice.img : ''}`} alt={`${props.choice ? props.choice.alt : ''}`} />
                 </div>
             </div>
         </div>
@@ -24,3 +25,4 @@ const Cards = (props) => {
 
 export default Cards
 
+// 
