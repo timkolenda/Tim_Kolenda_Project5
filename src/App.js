@@ -48,10 +48,9 @@ class App extends Component {
         </header>
         <main>
           <section>
-            <div>
-
-            </div>
-            <GameBoard />
+            <GameBoard userChoice={this.state.userChoice}/>
+            {/* <Card imageSelection={this.state.userChoice}/> */}
+            {/* <Card imageSelection={this.state.compChoice} /> */}
           </section>
           <section className='userOptions'>
             {this.state.options.map((option) => {
