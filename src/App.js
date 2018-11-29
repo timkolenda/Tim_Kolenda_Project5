@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
-import UserSelections from './UserSelections';
 import options from './options';
+import UserSelections from './UserSelections';
+import GameBoard from './GameBoard';
 
 class App extends Component {
   constructor(){
@@ -30,27 +31,40 @@ class App extends Component {
     })
   }
 
-  
-    
-    
-    
+  setCompChoice = choice => {
+    const compChoiceNumber = Math.floor(Math.random() * this.state.options.length);
+    console.log(compChoiceNumber);
+    this.setState({
+      compChoice: this.state.options[compChoiceNumber].type
+    })
+  }
+
   render() {
-    console.log(this.state.options);
+    console.log(this.state.options.length);
     return (
       <div className="App">
         <header>
           <h2>RPSLS</h2>
         </header>
-        <section></section>
-        <section>
-          {this.state.options.map((option) => {
-            return <UserSelections
-            type={option.type} 
-            img={option.img}
-            getUserChoice={this.getUserChoice}
-            />
-          })}
-        </section>
+        <main>
+          <section>
+            <div>
+
+            </div>
+            <div>
+              <button onClick={this.handleClick}>Play</button>
+            </div>
+          </section>
+          <section className='userOptions'>
+            {this.state.options.map((option) => {
+              return <UserSelections
+              type={option.type} 
+              img={option.img}
+              getUserChoice={this.getUserChoice}
+              />
+            })}
+          </section>
+        </main>
       </div>
     );
   }

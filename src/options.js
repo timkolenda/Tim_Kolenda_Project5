@@ -1,5 +1,3 @@
-
-
 const options = [
     {
         type: 'rock',
