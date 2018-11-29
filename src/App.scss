@@ -1,30 +1,10 @@
-.App {
-  text-align: center;
-}
+@import "partials/colors";
+@import "partials/global";
+@import "partials/main";
 
 
-.userOptions {
-  display: flex;
-  &__button{
-    width: 20%;
-    border: 1px solid black;
-    border-radius: 10px;
-    margin: auto;
-  }
-  &__image{
-    width: 50%;
-    margin: auto;
-    border: 1px solid tomato;
-    position: relative;
-    top: 10%;
-    &--spock{
-      width: 40%;
-    }
-    &--rock{
-      top: 0;
-    }
-  }
-}
+
+
 
 
 

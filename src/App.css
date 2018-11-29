@@ -8,6 +8,16 @@
     border: 1px solid black;
     border-radius: 10px;
     margin: auto; }
+    .userOptions__button--rock {
+      background-color: #ee6055; }
+    .userOptions__button--paper {
+      background-color: #60d394; }
+    .userOptions__button--scissors {
+      background-color: #aaf683; }
+    .userOptions__button--lizard {
+      background-color: #ffd97d; }
+    .userOptions__button--spock {
+      background-color: #ff9b85; }
   .userOptions__image {
     width: 50%;
     margin: auto;
@@ -18,3 +28,12 @@
       width: 40%; }
     .userOptions__image--rock {
       top: 0; }
+
+.cardContainer {
+  perspective: 1000px;
+  height: 200px;
+  width: 200px; }
+  .cardContainer .playerCards__cardFlipper {
+    transition: 5s;
+    transform-style: preserve-3d;
+    position: relative; }

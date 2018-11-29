@@ -51,9 +51,7 @@ class App extends Component {
             <div>
 
             </div>
-            <div>
-              <button onClick={this.handleClick}>Play</button>
-            </div>
+            <GameBoard />
           </section>
           <section className='userOptions'>
             {this.state.options.map((option) => {
