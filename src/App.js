@@ -12,6 +12,7 @@ class App extends Component {
       compChoice: "",
       compWinCount: 0,
       userWinCount: 0,
+      tieCount: 0,
       totalThrows: 0,
       scoreNeededToWin: 5,
       currentLeader: {},
@@ -20,7 +21,7 @@ class App extends Component {
   }
   getTotalThrows = () => {
     this.setState({
-      totalThrows: this.state.compWinCount + this.state.userWinCount
+      totalThrows: this.state.compWinCount + this.state.userWinCount + this.state.tieCount
     });
   }
   
@@ -38,19 +39,59 @@ class App extends Component {
   getCompChoice = (event) => {
     const compChoiceKeys = Object.keys(this.state.options);
     const compChoiceNumber = Math.floor(Math.random() * compChoiceKeys.length);
-    console.log(compChoiceNumber);
-    console.log('here', compChoiceKeys[compChoiceNumber]);
     this.setState({
       compChoice: compChoiceKeys[compChoiceNumber]
-    })
-    console.log('now here', this.state.compChoice);
+    });
+    this.resolveRound();
   }
 
+  resolveRound = () => {
+    setTimeout(() => {
+      this.caluculateResult();
+    }, 1000);
+  }
+
+  caluculateResult = (event) => {
+    console.log('checking for results');
+    if (this.state.userChoice && this.state.compChoice) {
+      if (((this.state.userChoice === "rock") && (this.state.compChoice === "scissors"))
+        || ((this.state.userChoice === "paper") && (this.state.compChoice === "rock"))
+        || ((this.state.userChoice === "scissors") && (this.state.compChoice === "paper"))
+        || ((this.state.userChoice === "scissors") && (this.state.compChoice === "lizard"))
+        || ((this.state.userChoice === "rock") && (this.state.compChoice === "lizard"))
+        || ((this.state.userChoice === "paper") && (this.state.compChoice === "spock"))
+        || ((this.state.userChoice === "spock") && (this.state.compChoice === "rock"))
+        || ((this.state.userChoice === "spock") && (this.state.compChoice === "scissors"))
+        || ((this.state.userChoice === "lizard") && (this.state.compChoice === "paper"))) {
+        console.log('win');
+        this.setState({
+          userWinCount: this.state.userWinCount + 1
+        })
+      } else if (this.state.userChoice === this.state.compChoice) {
+        console.log('tie');
+        this.setState({
+          tieCount: this.state.tieCount + 1
+        })
+      } else {
+        console.log('lose');
+        this.setState({
+          compWinCount: this.state.compWinCount + 1
+        })
+      }
+    }
+  }
 
   render() {
-    // console.log(this.state.options[this.state.userChoice]);
     return (
       <div className="App">
+        {/* <div className='front-page'>
+          <div className="front-page__content">
+            <h2>RPSLS</h2>
+            <form action="">
+            
+            </form>
+          </div>
+        </div> */}
         <header>
           <h2>RPSLS</h2>
         </header>
@@ -59,17 +100,12 @@ class App extends Component {
             <GameBoard 
             compChoice={this.state.options[this.state.compChoice]}
             userChoice={this.state.options[this.state.userChoice]}
-            getCompChoice={this.getCompChoice} />
-            {/* <Card imageSelection={this.state.userChoice}/> */}
-            {/* <Card imageSelection={this.state.compChoice} /> */}
+            getCompChoice={this.getCompChoice} 
+            />
           </section>
           <section className='userOptions'>
-            {/* {this.state.options.map((option) => { */}
             {Object.keys(this.state.options).map((option) => { 
-              // console.log(option); 
-              // console.log(this.state.options[option]);
               return <UserSelections
-              // choiceObject={option}
               type={this.state.options[option].type} 
               img={this.state.options[option].img}
               getUserChoice={this.getUserChoice}
@@ -80,6 +116,23 @@ class App extends Component {
       </div>
     );
   }
+  componentDidMount(){
+    
+
+    
+
+    // winScenario = () => {
+    //   this.setState({
+
+    //   })
+    // }
+
+
+
+
+  }
+
+
 }
 
 export default App;

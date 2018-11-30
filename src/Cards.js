@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 
 
 //make a component that displays the cards
-
 const Cards = (props) => {
+// class Cards extends Component {
+//     constructor() {
+//         super();
+    
+//     }
     // console.log('this', props.front.img);
-
-
+   
     return (
         <div className="cardContainer">
             <div className={`playerCards__cardFlipper ${props.choice ? 'playerCards__cardFlipper--active' : ''}`}>
@@ -19,6 +22,7 @@ const Cards = (props) => {
             </div>
         </div>
     )
+    
 }
 
 
