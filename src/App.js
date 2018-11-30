@@ -1,13 +1,21 @@
 import React, { Component } from 'react';
 import './App.css';
+import firebase from './firebase';
 import options from './options';
 import UserSelections from './UserSelections';
 import GameBoard from './GameBoard';
+import Start from './Start';
+
+
+
 
 class App extends Component {
   constructor(){
     super();
     this.state = {
+      leaderBoard: [],
+      nickName: '',
+      onLandingPage: true,
       userChoice: "",
       compChoice: "",
       compWinCount: 0,
@@ -24,12 +32,22 @@ class App extends Component {
       totalThrows: this.state.compWinCount + this.state.userWinCount + this.state.tieCount
     });
   }
+
+  handleChange = (event) => {
+    this.setState({
+      [event.target.id]: event.target.value
+    })
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    this.setState({
+      onLandingPage: false,
+    });
+  }
   
   getUserChoice = (event) => {
     console.log(event.target.value);
-    this.setState({
-      userChoice: ''
-    });
     this.setState({
       userChoice: event.target.value
     });
@@ -81,17 +99,21 @@ class App extends Component {
     }
   }
 
+  
+
+
   render() {
     return (
       <div className="App">
-        {/* <div className='front-page'>
-          <div className="front-page__content">
-            <h2>RPSLS</h2>
-            <form action="">
-            
-            </form>
-          </div>
-        </div> */}
+        <div>
+          {this.state.onLandingPage 
+            ? <Start 
+            nickName={this.nickName} 
+            handleChange={this.handleChange} 
+            handleSubmit={this.handleSubmit}
+            /> 
+            : ''}
+        </div>
         <header>
           <h2>RPSLS</h2>
         </header>
@@ -116,15 +138,30 @@ class App extends Component {
       </div>
     );
   }
+
   componentDidMount(){
+    const dbRef = firebase.database().ref('/leaderBoard');
+    dbRef.on('value', (snapshot) => {
+      // console.log(snapshot.val());
+      const newLeaderBoard = Array.from(this.state.leaderBoard);
+      newLeaderBoard.push(snapshot.val());
+      this.setState({
+        leaderBoard: newLeaderBoard
+      })      
+    });
     
 
-    
-
-    // winScenario = () => {
+    // updateInventory = (event) => {
+    //   console.log('I was called');
+    //   console.log(event.target.value);
+    //   //first clone the current state so we are not modifying state directly
+    //   const newDonuts = Array.from(this.state.donuts);
+    //   //subtract one form the donut dinventory at [event.target.value]
+    //   newDonuts[event.target.value].inventory = newDonuts[event.target.value].inventory - 1;
+    //   //^^^^ could also use newDonuts[event.target.value].inventory--;
     //   this.setState({
-
-    //   })
+    //     donuts: newDonuts
+    //   });
     // }
 
 
