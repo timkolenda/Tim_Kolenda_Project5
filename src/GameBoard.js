@@ -34,12 +34,14 @@ class GameBoard extends Component {
                     front={this.state.userCardFront} 
                     back={this.state.userCardBack}
                     resolveRound={this.props.resolveRound}
+                    flipped={this.props.userCardFlipped}
                     />                    
                     <Cards 
                     choice={this.props.compChoice}
                     front={this.state.compCardFront}
                     back={this.state.compCardBack}
                     resolveRound={this.props.resolveRound}
+                    flipped={this.props.compCardFlipped}
                     />
                 </div>    
                 <div>

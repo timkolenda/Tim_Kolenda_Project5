@@ -48,7 +48,8 @@ const options = {
         alt: 'Image of a hand in a fist, indicating rock!',
         userRemaining: null,
         compRemaining: null,
-        index: 0
+        index: 0,
+        customClass: 'card--rock' 
     },
     paper: {
         type: 'paper',
@@ -56,7 +57,8 @@ const options = {
         alt: 'Image of a flat hand, indicating paper!',
         userRemaining: null,
         compRemaining: null,
-        index: 1
+        index: 1,
+        customClass: 'card--paper'
     },
     scissors: {
         type: 'scissors',
@@ -64,7 +66,8 @@ const options = {
         alt: 'Image of a hand with two fingers out, indicating scissors!',
         userRemaining: null,
         compRemaining: null,
-        index: 2
+        index: 2,
+        customClass: 'card--scissors'
     },
     lizard: {
         type: 'lizard',
@@ -72,7 +75,8 @@ const options = {
         alt: 'Image of a hand forming a mouth, indicating lizard!',
         userRemaining: null,
         compRemaining: null,
-        index: 3
+        index: 3,
+        customClass: 'card--lizard'
     },
     spock: {
         type: 'spock',
@@ -80,7 +84,8 @@ const options = {
         alt: 'Image of a hand giving the Vulcan salute, indicating spock!',
         userRemaining: null,
         compRemaining: null,
-        index: 4
+        index: 4,
+        customClass: 'card--spock'
     }
 }
 

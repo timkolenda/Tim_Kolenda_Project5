@@ -1,6 +1,11 @@
 
+.App {
+    height: 100vh;
+    background-color: #4791ff;;
+}
+
 .front-page{
-    background: lightblue;
+    background: $background-color;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -53,61 +58,100 @@
     height: 200px;
     width: 200px;
     .playerCards__cardFlipper {
-        transition: 5s;
+        transition: 2s;
         transform-style: preserve-3d;
         position: relative;        
         &--active{
             transform: rotateY(180deg);
         }
     .card {
+        background-color: #c6c5ec;;
+        border-radius: 5%;
+        border: 1px black solid;
         height: 200px;
         width: 200px;
         backface-visibility: hidden;
         position: absolute;
         top: 0;
         left: 0;
-        &--front{
-            //  z-index: 2;
-            // backface-visibility: hidden;
-            img{
-                backface-visibility: hidden;
-            }
+        display: flex;
+            img {
+                position: relative;
+                margin: auto;
+                width: 70%;
             }
         &--back{
             transform: rotateY(180deg);
-            // backface-visibility: hidden;
+            }
+        &--rock{
+            background-color: $rock-color;
+        }
+        &--paper{
+            background-color: $paper-color;
             img{
-                backface-visibility: hidden;
+                top: 8%;
+                right: 2%;
             }
+        }
+        &--scissors{
+            background-color: $scissors-color;
+            img{
+                top: 8%;
+                right: 1%;
             }
+        }
+        &--lizard{
+            background-color: $lizard-color;
+            img{
+                top: 12%;
+            }
+        }
+        &--spock{
+            background-color: $spock-color;
+            img{
+                width: 55%;
+                top: 9%;
+                right: 3%;
+            }
+        }
+
         }
     }
 
 }
 
-.roundResuts {
+.roundResult {
     position: absolute;
+    z-index: 9;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     display: flex;
-    &__roundResult {
+    background: $background-color;
+    &__resultContainer {
         margin: auto;
+    }
+    &__title{
         color: tomato;
     }
 }
 
 
 
-// .card--front{
-//     // background: purple;
-//     z-index: 2;
-//     backface-visibility: hidden;
-// }
-
-// .card--back{
-//     // background: tomato;
-//     transform: rotateY(180deg);
-//     backface-visibility: hidden;
-// }
+.header {
+    width: 100%;
+    display: flex;
+    &__leaderBoard{
+        display: flex;
+    }
+    &__title{
+        
+    }
+    &__scoreTracker{
+        display: flex;
+        &Container{
+            display: flex;
+        }
+    }
+}

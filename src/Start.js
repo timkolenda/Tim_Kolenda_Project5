@@ -11,7 +11,7 @@ const Start = (props) => {
             <form action="">
                 <label htmlFor="nickName">Enter a nickname</label>
                 <input onChange={props.handleChange} type="text" id="nickName" val={props.nickName}/>
-                <button onClick={props.handleSubmit} >Start Game</button>
+                <button onClick={props.handleClick} >Start Game</button>
             </form>
           </div>
         </div> 

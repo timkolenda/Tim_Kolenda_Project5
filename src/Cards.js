@@ -12,11 +12,11 @@ const Cards = (props) => {
    
     return (
         <div className="cardContainer">
-            <div className={`playerCards__cardFlipper ${props.choice ? 'playerCards__cardFlipper--active' : ''}`}>
-                <div className="card card--front">
+            <div className={`playerCards__cardFlipper ${props.flipped ? 'playerCards__cardFlipper--active' : ''}`}>
+                <div className={`card card--front`}>
                     <img src={props.front.img} alt={props.front.alt} />
                 </div>
-                <div className="card card--back">
+                <div className={`card card--back ${props.choice ? props.choice.customClass : ''}`}>
                     <img src={`${props.choice ? props.choice.img : ''}`} alt={`${props.choice ? props.choice.alt : ''}`} />
                 </div>
             </div>

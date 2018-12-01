@@ -3,10 +3,10 @@ import './App.css';
 import firebase from './firebase';
 import options from './options';
 import UserSelections from './UserSelections';
+import Header from './Header';
 import GameBoard from './GameBoard';
 import Start from './Start';
 import DisplayResult from './DisplayResult';
-
 
 
 
@@ -27,32 +27,48 @@ class App extends Component {
       currentLeader: {},
       options: options,
       resultsDisplayed: false,
-      roundResult: ""
+      roundResult: "",
+      userCardFlipped: false,
+      compCardFlipped: false,
+      userImg: { img: 'assets/noun_puppy_1963353.svg', alt: 'Default user image. A cute puppy.' },
+      compImg: { img: 'assets/noun_Robot_855943.svg', alt: 'Default computer image. A cute robot!' }
     }
   }
-  getTotalThrows = () => {
-    this.setState({
-      totalThrows: this.state.compWinCount + this.state.userWinCount + this.state.tieCount
-    });
-  }
-
+  
   handleChange = (event) => {
     this.setState({
       [event.target.id]: event.target.value
     })
   }
 
-  handleSubmit = (event) => {
+  handleClickStart = (event) => {
     event.preventDefault();
     this.setState({
-      onLandingPage: false,
+      onLandingPage: false
     });
   }
-  
+
+  handleClickDisplayResult = (event) => {
+    event.preventDefault();
+    this.setState({
+      resultsDisplayed: false,
+      userCardFlipped: false,
+      compCardFlipped: false
+    });
+    //REMOVED ACTIVE FLIPPED ANIMATION HERE BEFORE CHOICE SET HAPPENS
+    setTimeout(() => {
+      this.setState({
+        userChoice: "",
+        compChoice: ""
+      });
+    }, 1000); 
+  }
+
   getUserChoice = (event) => {
     console.log(event.target.value);
     this.setState({
-      userChoice: event.target.value
+      userChoice: event.target.value,
+      userCardFlipped: true
     });
     // console.log(this.state.userChoice);
   }
@@ -61,7 +77,8 @@ class App extends Component {
     const compChoiceKeys = Object.keys(this.state.options);
     const compChoiceNumber = Math.floor(Math.random() * compChoiceKeys.length);
     this.setState({
-      compChoice: compChoiceKeys[compChoiceNumber]
+      compChoice: compChoiceKeys[compChoiceNumber],
+      compCardFlipped: true
     });
     this.resolveRound();
   }
@@ -87,26 +104,55 @@ class App extends Component {
         console.log('win');
         this.setState({
           userWinCount: this.state.userWinCount + 1,
-          roundResult: 'Win'
+          roundResult: 'Round won!'
         })
       } else if (this.state.userChoice === this.state.compChoice) {
         console.log('tie');
         this.setState({
           tieCount: this.state.tieCount + 1,
-          roundResult: 'Tie'
+          roundResult: 'Round tied!'
         })
       } else {
         console.log('lose');
         this.setState({
           compWinCount: this.state.compWinCount + 1,
-          roundResult: 'Lose'
+          roundResult: 'Round lost!'
         })
       }
     }
     this.getTotalThrows();
   }
 
+  getTotalThrows = () => {
+    this.setState({
+      totalThrows: this.state.compWinCount + this.state.userWinCount + this.state.tieCount
+    });
+    this.calculateGameEnd();
+  }
+
+  calculateGameEnd = () => {
+    (this.state.userWinCount < 5) ? this.displayRoundResultAfterAnimation() : this.displayEndGameScreen();
+  }
+
+  displayRoundResultAfterAnimation = () => {
+    setTimeout(() => {
+      this.displayRoundResult();
+    }, 1000);
+  }
+
+  displayRoundResult = () => {
+    this.setState({
+      resultsDisplayed: true
+    });
+  }
+
+  displayEndGameScreen = () => {
+    console.log('game over');
+  }
   
+
+
+
 
 
   render() {
@@ -117,12 +163,18 @@ class App extends Component {
             ? <Start 
             nickName={this.nickName} 
             handleChange={this.handleChange} 
-            handleSubmit={this.handleSubmit}
+            handleClick={this.handleClickStart}
             /> 
             : ''}
         </div>
         <header>
-          <h2>RPSLS</h2>
+          <Header
+          compImg={this.state.compImg}
+          userImg={this.state.userImg}
+          compWinCount={this.state.compWinCount}
+          userWinCount={this.state.userWinCount}
+          totalThrows={this.state.totalThrows}
+          /> 
         </header>
         <main>
           <section>
@@ -130,6 +182,8 @@ class App extends Component {
             compChoice={this.state.options[this.state.compChoice]}
             userChoice={this.state.options[this.state.userChoice]}
             getCompChoice={this.getCompChoice} 
+            userCardFlipped={this.state.userCardFlipped}
+            compCardFlipped={this.state.compCardFlipped}
             />
           </section>
           <section className='userOptions'>
@@ -142,12 +196,17 @@ class App extends Component {
             })}
           </section>
         </main>
-        <div>
+        <section>
           {this.state.resultsDisplayed ? 
           <DisplayResult
           roundResult={this.state.roundResult}
+          handleClick={this.handleClickDisplayResult}
           /> : ""}
-        </div>
+        </section>
+        <section>
+
+        </section>
+        
       </div>
     );
   }
