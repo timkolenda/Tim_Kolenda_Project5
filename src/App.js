@@ -5,6 +5,7 @@ import options from './options';
 import UserSelections from './UserSelections';
 import GameBoard from './GameBoard';
 import Start from './Start';
+import DisplayResult from './DisplayResult';
 
 
 
@@ -14,8 +15,8 @@ class App extends Component {
     super();
     this.state = {
       leaderBoard: [],
-      nickName: '',
-      onLandingPage: true,
+      nickName: "",
+      onLandingPage: false,
       userChoice: "",
       compChoice: "",
       compWinCount: 0,
@@ -24,7 +25,9 @@ class App extends Component {
       totalThrows: 0,
       scoreNeededToWin: 5,
       currentLeader: {},
-      options: options
+      options: options,
+      resultsDisplayed: false,
+      roundResult: ""
     }
   }
   getTotalThrows = () => {
@@ -83,20 +86,24 @@ class App extends Component {
         || ((this.state.userChoice === "lizard") && (this.state.compChoice === "paper"))) {
         console.log('win');
         this.setState({
-          userWinCount: this.state.userWinCount + 1
+          userWinCount: this.state.userWinCount + 1,
+          roundResult: 'Win'
         })
       } else if (this.state.userChoice === this.state.compChoice) {
         console.log('tie');
         this.setState({
-          tieCount: this.state.tieCount + 1
+          tieCount: this.state.tieCount + 1,
+          roundResult: 'Tie'
         })
       } else {
         console.log('lose');
         this.setState({
-          compWinCount: this.state.compWinCount + 1
+          compWinCount: this.state.compWinCount + 1,
+          roundResult: 'Lose'
         })
       }
     }
+    this.getTotalThrows();
   }
 
   
@@ -135,6 +142,12 @@ class App extends Component {
             })}
           </section>
         </main>
+        <div>
+          {this.state.resultsDisplayed ? 
+          <DisplayResult
+          roundResult={this.state.roundResult}
+          /> : ""}
+        </div>
       </div>
     );
   }
