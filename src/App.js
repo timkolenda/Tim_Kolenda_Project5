@@ -8,22 +8,24 @@ import GameBoard from './GameBoard';
 import Start from './Start';
 import DisplayResult from './DisplayResult';
 
-
+const dbRef = firebase.database().ref();
 
 class App extends Component {
   constructor(){
     super();
     this.state = {
-      leaderBoard: [],
+      topPlayerName: "",
+      topPlayerScore: 0,
+      endGamePlayerData: [],
       nickName: "",
-      onLandingPage: false,
+      onLandingPage: true,
       userChoice: "",
       compChoice: "",
       compWinCount: 0,
       userWinCount: 0,
       tieCount: 0,
       totalThrows: 0,
-      scoreNeededToWin: 5,
+      scoreNeededToWin: 2,
       currentLeader: {},
       options: options,
       resultsDisplayed: false,
@@ -65,7 +67,7 @@ class App extends Component {
   }
 
   getUserChoice = (event) => {
-    console.log(event.target.value);
+    // console.log(event.target.value);
     this.setState({
       userChoice: event.target.value,
       userCardFlipped: true
@@ -90,30 +92,31 @@ class App extends Component {
   }
 
   caluculateResult = (event) => {
-    console.log('checking for results');
+    // console.log('checking for results');
     if (this.state.userChoice && this.state.compChoice) {
       if (((this.state.userChoice === "rock") && (this.state.compChoice === "scissors"))
+        || ((this.state.userChoice === "rock") && (this.state.compChoice === "lizard"))
         || ((this.state.userChoice === "paper") && (this.state.compChoice === "rock"))
+        || ((this.state.userChoice === "paper") && (this.state.compChoice === "spock"))
         || ((this.state.userChoice === "scissors") && (this.state.compChoice === "paper"))
         || ((this.state.userChoice === "scissors") && (this.state.compChoice === "lizard"))
-        || ((this.state.userChoice === "rock") && (this.state.compChoice === "lizard"))
-        || ((this.state.userChoice === "paper") && (this.state.compChoice === "spock"))
         || ((this.state.userChoice === "spock") && (this.state.compChoice === "rock"))
         || ((this.state.userChoice === "spock") && (this.state.compChoice === "scissors"))
-        || ((this.state.userChoice === "lizard") && (this.state.compChoice === "paper"))) {
-        console.log('win');
+        || ((this.state.userChoice === "lizard") && (this.state.compChoice === "paper"))
+        || ((this.state.userChoice === "lizard") && (this.state.compChoice === "spock"))) {
+        // console.log('win');
         this.setState({
           userWinCount: this.state.userWinCount + 1,
           roundResult: 'Round won!'
         })
       } else if (this.state.userChoice === this.state.compChoice) {
-        console.log('tie');
+        // console.log('tie');
         this.setState({
           tieCount: this.state.tieCount + 1,
           roundResult: 'Round tied!'
         })
       } else {
-        console.log('lose');
+        // console.log('lose');
         this.setState({
           compWinCount: this.state.compWinCount + 1,
           roundResult: 'Round lost!'
@@ -131,7 +134,7 @@ class App extends Component {
   }
 
   calculateGameEnd = () => {
-    (this.state.userWinCount < 5) ? this.displayRoundResultAfterAnimation() : this.displayEndGameScreen();
+    (this.state.userWinCount < 2) ? this.displayRoundResultAfterAnimation() : this.runEndGameFunctions();
   }
 
   displayRoundResultAfterAnimation = () => {
@@ -146,12 +149,34 @@ class App extends Component {
     });
   }
 
+  runEndGameFunctions = () => {
+    this.displayEndGameScreen();
+    this.addPlayerToFireBase();
+  }
+
   displayEndGameScreen = () => {
-    console.log('game over');
+    console.log('end game screen display')
+  }
+
+  addPlayerToFireBase = () => {
+    const newPlayer = {
+      name: this.state.nickName,
+      score: this.state.totalThrows,
+      // date: new Date()
+    }
+    // const dbRef = firebase.database().ref('/leaderBoard');
+    dbRef.push(newPlayer);
   }
   
-
-
+  getTopPlayerData = () => {
+    const newArray = Object.values(this.state.endGamePlayerData).sort((a, b) => a.score - b.score);
+    console.log(newArray[0])
+    this.setState({
+      topPlayerName: newArray[0].name,
+      topPlayerScore: newArray[0].score
+    })
+    
+  }
 
 
 
@@ -174,6 +199,10 @@ class App extends Component {
           compWinCount={this.state.compWinCount}
           userWinCount={this.state.userWinCount}
           totalThrows={this.state.totalThrows}
+          topPlayerName={this.state.topPlayerName}
+          topPlayerScore={this.state.topPlayerScore}
+          // endGamePlayerData={this.state.endGamePlayerData}
+          // getTopPlayer={this.getTopPlayer}
           /> 
         </header>
         <main>
@@ -212,14 +241,13 @@ class App extends Component {
   }
 
   componentDidMount(){
-    const dbRef = firebase.database().ref('/leaderBoard');
+    // const dbRef = firebase.database().ref('/leaderBoard');
     dbRef.on('value', (snapshot) => {
-      // console.log(snapshot.val());
-      const newLeaderBoard = Array.from(this.state.leaderBoard);
-      newLeaderBoard.push(snapshot.val());
+      console.log(snapshot.val());
       this.setState({
-        leaderBoard: newLeaderBoard
+        endGamePlayerData: snapshot.val()
       })      
+      this.getTopPlayerData();
     });
     
 
