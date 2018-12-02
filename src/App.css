@@ -135,97 +135,44 @@ html {
   font-size: 62.5%;
   text-align: center; }
 
-.App {
-  height: 100vh;
-  background-color: #4791ff; }
+body {
+  background: #4791ff; }
 
-.front-page {
-  background: lightblue;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+main {
+  height: calc(100vh - 100px);
   display: flex;
-  z-index: 9; }
+  flex-direction: column;
+  justify-content: space-between; }
 
-.userOptions {
-  display: flex; }
-  .userOptions__button {
-    width: 20%;
-    border: 1px solid black;
-    border-radius: 10px;
-    margin: auto; }
-    .userOptions__button--rock {
-      background-color: #ee6055; }
-    .userOptions__button--paper {
-      background-color: #60d394; }
-    .userOptions__button--scissors {
-      background-color: #aaf683; }
-    .userOptions__button--lizard {
-      background-color: #ffd97d; }
-    .userOptions__button--spock {
-      background-color: #ff9b85; }
-  .userOptions__image {
-    width: 50%;
-    margin: auto;
-    border: 1px solid tomato;
-    position: relative;
-    top: 10%; }
-    .userOptions__image--spock {
-      width: 40%; }
-    .userOptions__image--rock {
-      top: 0; }
+.App {
+  font-family: 'Roboto', sans-serif;
+  max-width: 800px;
+  margin: auto; }
 
-.cardContainer {
-  perspective: 1000px;
-  height: 200px;
-  width: 200px; }
-  .cardContainer .playerCards__cardFlipper {
-    transition: 2s;
-    transform-style: preserve-3d;
-    position: relative; }
-    .cardContainer .playerCards__cardFlipper--active {
-      transform: rotateY(180deg); }
-    .cardContainer .playerCards__cardFlipper .card {
-      background-color: #c6c5ec;
-      border-radius: 5%;
-      border: 1px black solid;
-      height: 200px;
-      width: 200px;
-      backface-visibility: hidden;
-      position: absolute;
-      top: 0;
-      left: 0;
-      display: flex; }
-      .cardContainer .playerCards__cardFlipper .card img {
-        position: relative;
-        margin: auto;
-        width: 70%; }
-      .cardContainer .playerCards__cardFlipper .card--back {
-        transform: rotateY(180deg); }
-      .cardContainer .playerCards__cardFlipper .card--rock {
-        background-color: #ee6055; }
-      .cardContainer .playerCards__cardFlipper .card--paper {
-        background-color: #60d394; }
-        .cardContainer .playerCards__cardFlipper .card--paper img {
-          top: 8%;
-          right: 2%; }
-      .cardContainer .playerCards__cardFlipper .card--scissors {
-        background-color: #aaf683; }
-        .cardContainer .playerCards__cardFlipper .card--scissors img {
-          top: 8%;
-          right: 1%; }
-      .cardContainer .playerCards__cardFlipper .card--lizard {
-        background-color: #ffd97d; }
-        .cardContainer .playerCards__cardFlipper .card--lizard img {
-          top: 12%; }
-      .cardContainer .playerCards__cardFlipper .card--spock {
-        background-color: #ff9b85; }
-        .cardContainer .playerCards__cardFlipper .card--spock img {
-          width: 55%;
-          top: 9%;
-          right: 3%; }
+h2 {
+  font-size: 6rem;
+  margin: 0; }
+
+.buttonStyling {
+  text-transform: uppercase;
+  padding: 13px 50px;
+  border: none;
+  color: #fcfcfc;
+  background-color: #ee6055;
+  font-size: 2rem; }
+
+.appName {
+  font-family: 'Bubblegum Sans', cursive; }
+  .appName span:nth-child(1) {
+    color: #ee6055; }
+  .appName span:nth-child(2) {
+    color: #60d394; }
+  .appName span:nth-child(3) {
+    color: #aaf683; }
+  .appName span:nth-child(4) {
+    color: #ffd97d; }
+  .appName span:nth-child(5) {
+    color: #ff9b85; }
 
 .roundResult {
   position: absolute;
@@ -235,7 +182,7 @@ html {
   right: 0;
   bottom: 0;
   display: flex;
-  background: lightblue; }
+  background: #4791ff; }
   .roundResult__resultContainer {
     margin: auto; }
   .roundResult__title {
@@ -259,3 +206,127 @@ html {
         width: 50%; }
         .header__scoreTrackerContainer div img {
           width: 100%; }
+
+.front-page {
+  background: #4791ff;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  z-index: 9; }
+  .front-page__content {
+    margin: auto;
+    max-width: 80%; }
+    .front-page__content .appName {
+      padding-bottom: 30px; }
+  .front-page__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 150px;
+    font-size: 2rem; }
+    .front-page__form label {
+      text-transform: uppercase; }
+    .front-page__form input {
+      background: #fcfcfc;
+      padding: 13px 50px;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 50px;
+      text-align: center;
+      margin-top: 15px; }
+
+.userOptions {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px; }
+  .userOptions__button {
+    width: 18%;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 2px 2px #020202; }
+    .userOptions__button--rock {
+      background-color: #ee6055; }
+    .userOptions__button--paper {
+      background-color: #60d394; }
+    .userOptions__button--scissors {
+      background-color: #aaf683; }
+    .userOptions__button--lizard {
+      background-color: #ffd97d; }
+    .userOptions__button--spock {
+      background-color: #ff9b85; }
+  .userOptions__image {
+    width: 50%;
+    margin: auto;
+    position: relative;
+    top: 10%; }
+    .userOptions__image--spock {
+      width: 40%; }
+    .userOptions__image--rock {
+      top: 0; }
+
+.gameBoard {
+  flex-grow: 1;
+  display: flex; }
+  .gameBoard__playArea {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center; }
+    .gameBoard__playArea .play {
+      margin-top: 40px; }
+
+.playerCards {
+  display: flex;
+  justify-content: space-around; }
+  .playerCards .cardContainer {
+    perspective: 1000px;
+    height: 200px;
+    width: 200px; }
+    .playerCards .cardContainer .playerCards__cardFlipper {
+      transition: 2s;
+      transform-style: preserve-3d;
+      position: relative; }
+      .playerCards .cardContainer .playerCards__cardFlipper--active {
+        transform: rotateY(180deg); }
+      .playerCards .cardContainer .playerCards__cardFlipper .card {
+        background-color: #c6c5ec;
+        border-radius: 5%;
+        border: 1px black solid;
+        height: 200px;
+        width: 200px;
+        backface-visibility: hidden;
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex; }
+        .playerCards .cardContainer .playerCards__cardFlipper .card img {
+          position: relative;
+          margin: auto;
+          width: 70%; }
+        .playerCards .cardContainer .playerCards__cardFlipper .card--back {
+          transform: rotateY(180deg); }
+        .playerCards .cardContainer .playerCards__cardFlipper .card--rock {
+          background-color: #ee6055; }
+        .playerCards .cardContainer .playerCards__cardFlipper .card--paper {
+          background-color: #60d394; }
+          .playerCards .cardContainer .playerCards__cardFlipper .card--paper img {
+            top: 8%;
+            right: 2%; }
+        .playerCards .cardContainer .playerCards__cardFlipper .card--scissors {
+          background-color: #aaf683; }
+          .playerCards .cardContainer .playerCards__cardFlipper .card--scissors img {
+            top: 8%;
+            right: 1%; }
+        .playerCards .cardContainer .playerCards__cardFlipper .card--lizard {
+          background-color: #ffd97d; }
+          .playerCards .cardContainer .playerCards__cardFlipper .card--lizard img {
+            top: 12%; }
+        .playerCards .cardContainer .playerCards__cardFlipper .card--spock {
+          background-color: #ff9b85; }
+          .playerCards .cardContainer .playerCards__cardFlipper .card--spock img {
+            width: 55%;
+            top: 9%;
+            right: 3%; }

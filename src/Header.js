@@ -19,8 +19,8 @@ const Header = (props) => {
                     </div>
                 </div>
             </div>
-            <div className="header__title">
-                <h2>RPSLS</h2>
+            <div className="header__title appName">
+                <h2><span>R</span><span>P</span><span>S</span><span>L</span><span>S</span></h2>
             </div>
             <div className="header__scoreTracker">
                 <Counter icon={props.userImg} score={props.userWinCount}/>

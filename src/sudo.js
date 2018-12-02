@@ -1,4 +1,20 @@
 
+//When a round ends display results
+//Create a new component to display results
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //IN APP
 //States housed in APP
     //userChoice - Gets set by user when they click - data gets sent back to main app form userChoice.js

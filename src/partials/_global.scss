@@ -5,9 +5,59 @@ html {
     text-align: center;
 }
 
-
-.App {
+body {
+    background: $background-color;
 }
 
+main {
+    height: calc(100vh - 100px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+.App {
+    font-family: 'Roboto', sans-serif;
+    max-width: 800px;
+    margin: auto;
+}
+
+h2 {
+    font-size: 6rem;
+    margin: 0;
+}
+
+
+.buttonStyling { 
+    text-transform: uppercase;
+    padding: 13px 50px;
+    border: none;
+    color: $white;
+    background-color: $rock-color;
+    font-size: 2rem;
+}
+
+
+.appName {
+    font-family: 'Bubblegum Sans', cursive;
+    span {
+        &:nth-child(1) {
+            color: $rock-color;
+        }
+        &:nth-child(2) {
+            color: $paper-color;
+        }
+        &:nth-child(3) {
+            color: $scissors-color;
+        }
+        &:nth-child(4) {
+            color: $lizard-color;
+        }
+        &:nth-child(5) {
+            color: $spock-color;
+        }
+    }
+}
 
 

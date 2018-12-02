@@ -27,25 +27,26 @@ class GameBoard extends Component {
     render() {
         return (
             <section className="gameBoard">
-                <h2>Game Board Area</h2>
-                <div className="playerCards">
-                    <Cards 
-                    choice={this.props.userChoice}
-                    front={this.state.userCardFront} 
-                    back={this.state.userCardBack}
-                    resolveRound={this.props.resolveRound}
-                    flipped={this.props.userCardFlipped}
-                    />                    
-                    <Cards 
-                    choice={this.props.compChoice}
-                    front={this.state.compCardFront}
-                    back={this.state.compCardBack}
-                    resolveRound={this.props.resolveRound}
-                    flipped={this.props.compCardFlipped}
-                    />
-                </div>    
-                <div>
-                    <button onClick={this.handleClick}>Play</button>
+                <div className="gameBoard__playArea">
+                    <div className="playerCards">
+                        <Cards 
+                        choice={this.props.userChoice}
+                        front={this.state.userCardFront} 
+                        back={this.state.userCardBack}
+                        resolveRound={this.props.resolveRound}
+                        flipped={this.props.userCardFlipped}
+                        />                    
+                        <Cards 
+                        choice={this.props.compChoice}
+                        front={this.state.compCardFront}
+                        back={this.state.compCardBack}
+                        resolveRound={this.props.resolveRound}
+                        flipped={this.props.compCardFlipped}
+                        />
+                    </div>    
+                    <div>
+                        <button className="buttonStyling play" onClick={this.handleClick}>Play</button>
+                    </div>
                 </div>
             </section>
         )

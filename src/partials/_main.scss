@@ -1,124 +1,9 @@
 
-.App {
-    height: 100vh;
-    background-color: #4791ff;;
-}
 
-.front-page{
-    background: $background-color;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    z-index: 9;
-}
 
-.userOptions {
-  display: flex;
-  &__button{
-    width: 20%;
-    border: 1px solid black;
-    border-radius: 10px;
-    margin: auto;
-    &--rock{
-        background-color: $rock-color;
-    }
-    &--paper{
-        background-color: $paper-color;
-    }
-    &--scissors{
-        background-color: $scissors-color;
-    }
-    &--lizard{
-        background-color: $lizard-color;
-    }
-    &--spock{
-        background-color: $spock-color;
-    }
-  }
-  &__image{
-    width: 50%;
-    margin: auto;
-    border: 1px solid tomato;
-    position: relative;
-    top: 10%;
-    &--spock{
-      width: 40%;
-    }
-    &--rock{
-      top: 0;
-    }
-  }
-}
 
-.cardContainer{
-    perspective: 1000px;
-    height: 200px;
-    width: 200px;
-    .playerCards__cardFlipper {
-        transition: 2s;
-        transform-style: preserve-3d;
-        position: relative;        
-        &--active{
-            transform: rotateY(180deg);
-        }
-    .card {
-        background-color: #c6c5ec;;
-        border-radius: 5%;
-        border: 1px black solid;
-        height: 200px;
-        width: 200px;
-        backface-visibility: hidden;
-        position: absolute;
-        top: 0;
-        left: 0;
-        display: flex;
-            img {
-                position: relative;
-                margin: auto;
-                width: 70%;
-            }
-        &--back{
-            transform: rotateY(180deg);
-            }
-        &--rock{
-            background-color: $rock-color;
-        }
-        &--paper{
-            background-color: $paper-color;
-            img{
-                top: 8%;
-                right: 2%;
-            }
-        }
-        &--scissors{
-            background-color: $scissors-color;
-            img{
-                top: 8%;
-                right: 1%;
-            }
-        }
-        &--lizard{
-            background-color: $lizard-color;
-            img{
-                top: 12%;
-            }
-        }
-        &--spock{
-            background-color: $spock-color;
-            img{
-                width: 55%;
-                top: 9%;
-                right: 3%;
-            }
-        }
 
-        }
-    }
 
-}
 
 .roundResult {
     position: absolute;
@@ -166,3 +51,4 @@
         }
     }
 }
+

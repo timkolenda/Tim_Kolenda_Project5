@@ -8,6 +8,7 @@ import GameBoard from './GameBoard';
 import Start from './Start';
 import DisplayResult from './DisplayResult';
 
+
 const dbRef = firebase.database().ref();
 
 class App extends Component {
@@ -206,15 +207,13 @@ class App extends Component {
           /> 
         </header>
         <main>
-          <section>
-            <GameBoard 
-            compChoice={this.state.options[this.state.compChoice]}
-            userChoice={this.state.options[this.state.userChoice]}
-            getCompChoice={this.getCompChoice} 
-            userCardFlipped={this.state.userCardFlipped}
-            compCardFlipped={this.state.compCardFlipped}
-            />
-          </section>
+          <GameBoard 
+          compChoice={this.state.options[this.state.compChoice]}
+          userChoice={this.state.options[this.state.userChoice]}
+          getCompChoice={this.getCompChoice} 
+          userCardFlipped={this.state.userCardFlipped}
+          compCardFlipped={this.state.compCardFlipped}
+          />
           <section className='userOptions'>
             {Object.keys(this.state.options).map((option) => { 
               return <UserSelections

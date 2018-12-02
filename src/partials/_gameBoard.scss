@@ -1,0 +1,83 @@
+
+.gameBoard{ 
+    flex-grow: 1;
+    display: flex;
+    &__playArea{
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        justify-content: center;
+        .play {
+            margin-top: 40px;
+        }
+    }
+}
+
+.playerCards {
+    display: flex;
+    justify-content: space-around;
+    .cardContainer{
+        perspective: 1000px;
+        height: 200px;
+        width: 200px;
+        .playerCards__cardFlipper {
+            transition: 2s;
+            transform-style: preserve-3d;
+            position: relative;        
+            &--active{
+                transform: rotateY(180deg);
+            }
+            .card {
+                background-color: #c6c5ec;;
+                border-radius: 5%;
+                border: 1px black solid;
+                height: 200px;
+                width: 200px;
+                backface-visibility: hidden;
+                position: absolute;
+                top: 0;
+                left: 0;
+                display: flex;
+                    img {
+                        position: relative;
+                        margin: auto;
+                        width: 70%;
+                    }
+                &--back{
+                    transform: rotateY(180deg);
+                    }
+                &--rock{
+                    background-color: $rock-color;
+                }
+                &--paper{
+                    background-color: $paper-color;
+                    img{
+                        top: 8%;
+                        right: 2%;
+                    }
+                }
+                &--scissors{
+                    background-color: $scissors-color;
+                    img{
+                        top: 8%;
+                        right: 1%;
+                    }
+                }
+                &--lizard{
+                    background-color: $lizard-color;
+                    img{
+                        top: 12%;
+                    }
+                }
+                &--spock{
+                    background-color: $spock-color;
+                    img{
+                        width: 55%;
+                        top: 9%;
+                        right: 3%;
+                    }
+                }
+            }
+        }
+    }
+}

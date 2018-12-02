@@ -1,0 +1,37 @@
+.front-page{
+    background: $background-color;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    z-index: 9;
+    &__content {
+        margin: auto;
+        max-width: 80%;
+        .appName {
+            padding-bottom: 30px;
+        }
+    }
+    &__form {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 150px;
+        font-size: 2rem;
+        // max-width: 80%;
+        label {
+            text-transform: uppercase;
+        }
+        input {
+            background: $white;
+            padding: 13px 50px;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 50px;
+            text-align: center;
+            margin-top: 15px;
+        }
+    }
+}

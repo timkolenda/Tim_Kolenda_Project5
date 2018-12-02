@@ -1,0 +1,40 @@
+.userOptions {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+  &__button{
+    width: 18%;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 2px 2px $black;
+    // margin: auto;
+    &--rock{
+        background-color: $rock-color;
+    }
+    &--paper{
+        background-color: $paper-color;
+    }
+    &--scissors{
+        background-color: $scissors-color;
+    }
+    &--lizard{
+        background-color: $lizard-color;
+    }
+    &--spock{
+        background-color: $spock-color;
+    }
+  }
+  &__image{
+    width: 50%;
+    margin: auto;
+    // border: 1px solid tomato;
+    position: relative;
+    top: 10%;
+    &--spock{
+      width: 40%;
+    }
+    &--rock{
+      top: 0;
+    }
+  }
+}
