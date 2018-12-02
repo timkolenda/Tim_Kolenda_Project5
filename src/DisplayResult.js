@@ -7,7 +7,7 @@ const DisplayResult = (props) => {
         <div className="roundResult">
             <div className="roundResult__resultContainer">
                 <h3 className="roundResult__title">{props.roundResult}</h3>
-                <button onClick={props.handleClick} >Next round</button>
+                <button className="buttonStyling" onClick={props.handleClick} >Next round</button>
             </div>
         </div>
     )

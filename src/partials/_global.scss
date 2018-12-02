@@ -10,7 +10,7 @@ body {
 }
 
 main {
-    height: calc(100vh - 100px);
+    height: calc(100vh - 120px);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -21,11 +21,13 @@ main {
     font-family: 'Roboto', sans-serif;
     max-width: 800px;
     margin: auto;
+    padding: 20px;
 }
 
 h2 {
     font-size: 6rem;
     margin: 0;
+    line-height: 0.8;
 }
 
 
@@ -36,6 +38,7 @@ h2 {
     color: $white;
     background-color: $rock-color;
     font-size: 2rem;
+    border-radius: 10px;
 }
 
 

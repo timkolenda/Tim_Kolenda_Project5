@@ -139,7 +139,7 @@ body {
   background: #4791ff; }
 
 main {
-  height: calc(100vh - 100px);
+  height: calc(100vh - 120px);
   display: flex;
   flex-direction: column;
   justify-content: space-between; }
@@ -147,11 +147,13 @@ main {
 .App {
   font-family: 'Roboto', sans-serif;
   max-width: 800px;
-  margin: auto; }
+  margin: auto;
+  padding: 20px; }
 
 h2 {
   font-size: 6rem;
-  margin: 0; }
+  margin: 0;
+  line-height: 0.8; }
 
 .buttonStyling {
   text-transform: uppercase;
@@ -159,7 +161,8 @@ h2 {
   border: none;
   color: #fcfcfc;
   background-color: #ee6055;
-  font-size: 2rem; }
+  font-size: 2rem;
+  border-radius: 10px; }
 
 .appName {
   font-family: 'Bubblegum Sans', cursive; }
@@ -186,7 +189,10 @@ h2 {
   .roundResult__resultContainer {
     margin: auto; }
   .roundResult__title {
-    color: tomato; }
+    text-transform: uppercase;
+    font-family: 'Bubblegum Sans', cursive;
+    font-size: 4rem;
+    color: #ffd97d; }
 
 .header {
   width: 100%;
@@ -238,10 +244,36 @@ h2 {
       text-align: center;
       margin-top: 15px; }
 
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between; }
+  .header__leaderBoard {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    text-align: left;
+    font-size: 1.5rem; }
+    .header__leaderBoard p {
+      margin: 0 0 15px 0; }
+  .header__title {
+    flex-grow: 1; }
+  .header__scoreTracker {
+    display: flex;
+    width: 20%;
+    justify-content: space-between;
+    align-items: center; }
+    .header__scoreTrackerContainer {
+      display: flex;
+      width: 40px; }
+      .header__scoreTrackerContainer div {
+        width: 50%; }
+        .header__scoreTrackerContainer div img {
+          width: 100%; }
+
 .userOptions {
   display: flex;
-  justify-content: space-between;
-  margin: 10px; }
+  justify-content: space-between; }
   .userOptions__button {
     width: 18%;
     border: none;

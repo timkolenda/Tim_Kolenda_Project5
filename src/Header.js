@@ -14,9 +14,9 @@ const Header = (props) => {
             <div className="header__leaderBoard">
                 <div>
                     <p>Current High Score</p>
-                    <div>
-                        <p>Name: {props.topPlayerName} Score: {props.topPlayerScore}</p>
-                    </div>
+                </div>
+                <div>
+                    <p>Name: {props.topPlayerName} Score: {props.topPlayerScore}</p>
                 </div>
             </div>
             <div className="header__title appName">
