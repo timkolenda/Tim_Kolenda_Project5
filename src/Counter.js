@@ -9,7 +9,7 @@ const Counter = (props) => {
     // }
     return(
         <div class="header__scoreTrackerContainer">
-            <div className="label">
+            <div className={`label label${props.icon.customClass}`}>
                 <img src={props.icon.img} alt={props.icon.alt ? props.icon.alt : 'Score'} />
             </div>
             <div className="score">

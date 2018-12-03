@@ -6,28 +6,66 @@
     &__leaderBoard{
         display: flex;
         flex-direction: column;
-        width: 20%;
+        // width: 20%;
         text-align: left;
         font-size: 1.5rem;
+        flex: 1 0 20px;
         p{
             margin: 0 0 15px 0;
+            text-transform: uppercase;
+        }
+        span {
+            background: $rock-color;
+            font-weight: 600;
         }
     }
     &__title{
-        flex-grow: 1;
+        // flex-grow: 1;
     }
     &__scoreTracker{
+        flex: 1 0 20px;
         display: flex;
-        width: 20%;
-        justify-content: space-between;
-        align-items: center;
+        justify-content: flex-end;
+        // width: 20%;
+        &Positioner{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            // align-items: flex-end;
+        }
         &Container{
             display: flex;
-            width: 40px;
+            align-items: center;
+            // justify-content: center;
             div {
                 width: 50%;
-                img{
-                    width: 100%;
+            }
+            img{
+                font-size: 2rem;
+                position: relative;
+            }
+            .label {
+                width: 60px;
+                &--user{
+                    // width: 30px;
+                    img {
+                        width: 55%;
+                    }
+                }
+                &--comp {
+                    // width: 30px;
+                    img {
+                        width: 75%;
+                        top: 2px;
+                    }
+                }
+            }  
+            .score {
+                color: $rock-color;
+                font-size: 3rem;
+                font-weight: bold;
+                p{
+                    margin: 0;
                 }
             }
         }

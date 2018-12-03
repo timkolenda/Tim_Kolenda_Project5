@@ -153,7 +153,7 @@ main {
 h2 {
   font-size: 6rem;
   margin: 0;
-  line-height: 0.8; }
+  line-height: 0.9; }
 
 .buttonStyling {
   text-transform: uppercase;
@@ -194,25 +194,6 @@ h2 {
     font-size: 4rem;
     color: #ffd97d; }
 
-.header {
-  width: 100%;
-  display: flex;
-  justify-content: space-between; }
-  .header__leaderBoard {
-    display: flex; }
-  .header__scoreTracker {
-    display: flex;
-    width: 100px;
-    justify-content: space-between;
-    align-items: center; }
-    .header__scoreTrackerContainer {
-      display: flex;
-      width: 40px; }
-      .header__scoreTrackerContainer div {
-        width: 50%; }
-        .header__scoreTrackerContainer div img {
-          width: 100%; }
-
 .front-page {
   background: #4791ff;
   position: absolute;
@@ -251,25 +232,44 @@ h2 {
   .header__leaderBoard {
     display: flex;
     flex-direction: column;
-    width: 20%;
     text-align: left;
-    font-size: 1.5rem; }
+    font-size: 1.5rem;
+    flex: 1 0 20px; }
     .header__leaderBoard p {
-      margin: 0 0 15px 0; }
-  .header__title {
-    flex-grow: 1; }
+      margin: 0 0 15px 0;
+      text-transform: uppercase; }
+    .header__leaderBoard span {
+      background: #ee6055;
+      font-weight: 600; }
   .header__scoreTracker {
+    flex: 1 0 20px;
     display: flex;
-    width: 20%;
-    justify-content: space-between;
-    align-items: center; }
+    justify-content: flex-end; }
+    .header__scoreTrackerPositioner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center; }
     .header__scoreTrackerContainer {
       display: flex;
-      width: 40px; }
+      align-items: center; }
       .header__scoreTrackerContainer div {
         width: 50%; }
-        .header__scoreTrackerContainer div img {
-          width: 100%; }
+      .header__scoreTrackerContainer img {
+        font-size: 2rem;
+        position: relative; }
+      .header__scoreTrackerContainer .label {
+        width: 60px; }
+        .header__scoreTrackerContainer .label--user img {
+          width: 55%; }
+        .header__scoreTrackerContainer .label--comp img {
+          width: 75%;
+          top: 2px; }
+      .header__scoreTrackerContainer .score {
+        color: #ee6055;
+        font-size: 3rem;
+        font-weight: bold; }
+        .header__scoreTrackerContainer .score p {
+          margin: 0; }
 
 .userOptions {
   display: flex;
@@ -307,7 +307,7 @@ h2 {
     width: 100%;
     flex-direction: column;
     justify-content: center; }
-    .gameBoard__playArea .play {
+    .gameBoard__playArea .playButton {
       margin-top: 40px; }
 
 .playerCards {
@@ -362,3 +362,10 @@ h2 {
             width: 55%;
             top: 9%;
             right: 3%; }
+        .playerCards .cardContainer .playerCards__cardFlipper .card--user img {
+          width: 55%;
+          top: 5%; }
+        .playerCards .cardContainer .playerCards__cardFlipper .card--comp img {
+          width: 90%;
+          top: 5%;
+          left: 4%; }

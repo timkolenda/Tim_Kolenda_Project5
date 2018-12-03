@@ -10,3 +10,5 @@ const EndGame = (props) => {
         </div>
     )
 }
+
+export default EndGame

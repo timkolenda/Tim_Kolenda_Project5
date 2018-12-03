@@ -5,11 +5,10 @@ class GameBoard extends Component {
     constructor() {
         super();
         this.state = {
-            durationArray: [],
-            userCardFront: {img: 'assets/noun_puppy_1963353.svg', alt: 'Default user image. A cute puppy.'},
-            userCardBack: {img: 'assets/noun_puppy_1963353.svg', alt: 'Default user image. A cute puppy.' },
-            compCardFront: {img: 'assets/noun_Robot_855943.svg', alt: 'Default computer image. A cute robot!'},
-            compCardBack: {img: 'assets/noun_Robot_855943.svg', alt: 'Default computer image. A cute robot!' }
+            userCardFront: {img: 'assets/noun_puppy_1963353.svg', alt: 'Default user image. A cute puppy.', customClass: 'card--user'},
+            userCardBack: { img: 'assets/noun_puppy_1963353.svg', alt: 'Default user image. A cute puppy.', customClass: 'card--user'},
+            compCardFront: {img: 'assets/noun_Robot_855943.svg', alt: 'Default computer image. A cute robot!', customClass: 'card--comp'},
+            compCardBack: { img: 'assets/noun_Robot_855943.svg', alt: 'Default computer image. A cute robot!', customClass: 'card--comp'}
         }
     }
     // showUserChoice = (prop) => {
@@ -45,7 +44,7 @@ class GameBoard extends Component {
                         />
                     </div>    
                     <div>
-                        <button className="buttonStyling play" onClick={this.handleClick}>Play</button>
+                        <button className="buttonStyling playButton" onClick={this.handleClick}>Play</button>
                     </div>
                 </div>
             </section>

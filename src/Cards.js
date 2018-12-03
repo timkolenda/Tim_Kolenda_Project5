@@ -13,7 +13,7 @@ const Cards = (props) => {
     return (
         <div className="cardContainer">
             <div className={`playerCards__cardFlipper ${props.flipped ? 'playerCards__cardFlipper--active' : ''}`}>
-                <div className={`card card--front`}>
+                <div className={`card card--front ${props.front.customClass}`}>
                     <img src={props.front.img} alt={props.front.alt} />
                 </div>
                 <div className={`card card--back ${props.choice ? props.choice.customClass : ''}`}>

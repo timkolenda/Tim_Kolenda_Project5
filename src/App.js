@@ -7,6 +7,7 @@ import Header from './Header';
 import GameBoard from './GameBoard';
 import Start from './Start';
 import DisplayResult from './DisplayResult';
+import EndGame from './EndGame';
 
 
 const dbRef = firebase.database().ref();
@@ -33,8 +34,8 @@ class App extends Component {
       roundResult: "",
       userCardFlipped: false,
       compCardFlipped: false,
-      userImg: { img: 'assets/noun_puppy_1963353.svg', alt: 'Default user image. A cute puppy.' },
-      compImg: { img: 'assets/noun_Robot_855943.svg', alt: 'Default computer image. A cute robot!' }
+      userImg: { img: 'assets/noun_puppy_1963353.svg', alt: 'Default user image. A cute puppy.', customClass: '--user'},
+      compImg: { img: 'assets/noun_Robot_855943.svg', alt: 'Default computer image. A cute robot!', customClass: '--comp' }
     }
   }
   
@@ -232,7 +233,7 @@ class App extends Component {
           /> : ""}
         </section>
         <section>
-
+          <EndGame />
         </section>
         
       </div>

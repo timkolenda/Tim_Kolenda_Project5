@@ -16,16 +16,18 @@ const Header = (props) => {
                     <p>Current High Score</p>
                 </div>
                 <div>
-                    <p>Name: {props.topPlayerName} Score: {props.topPlayerScore}</p>
+                    <p>Name: <span>{props.topPlayerName}</span> Score: <span>{props.topPlayerScore}</span></p>
                 </div>
             </div>
             <div className="header__title appName">
                 <h2><span>R</span><span>P</span><span>S</span><span>L</span><span>S</span></h2>
             </div>
             <div className="header__scoreTracker">
-                <Counter icon={props.userImg} score={props.userWinCount}/>
-                <Counter icon={props.compImg} score={props.compWinCount}/>
-                <Counter icon={0} score={props.totalThrows}/>
+                <div className="header__scoreTrackerPositioner">
+                    <Counter icon={props.userImg} score={props.userWinCount}/>
+                    <Counter icon={props.compImg} score={props.compWinCount}/>
+                    <Counter icon={0} score={props.totalThrows}/>
+                </div>    
             </div>
 
         </div>
