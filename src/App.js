@@ -18,7 +18,7 @@ class App extends Component {
     this.state = {
       topPlayerName: "",
       topPlayerScore: 0,
-      endGamePlayerData: [],
+      endGamePlayerData: {},
       nickName: "",
       onLandingPage: true,
       userChoice: "",
@@ -31,6 +31,7 @@ class App extends Component {
       currentLeader: {},
       options: options,
       resultsDisplayed: false,
+      endGameDisplayed: false,
       roundResult: "",
       userCardFlipped: false,
       compCardFlipped: false,
@@ -59,6 +60,7 @@ class App extends Component {
       userCardFlipped: false,
       compCardFlipped: false
     });
+    this.calculateGameEnd();
     //REMOVED ACTIVE FLIPPED ANIMATION HERE BEFORE CHOICE SET HAPPENS
     setTimeout(() => {
       this.setState({
@@ -132,11 +134,13 @@ class App extends Component {
     this.setState({
       totalThrows: this.state.compWinCount + this.state.userWinCount + this.state.tieCount
     });
-    this.calculateGameEnd();
+    this.displayRoundResultAfterAnimation();
   }
 
   calculateGameEnd = () => {
-    (this.state.userWinCount < 2) ? this.displayRoundResultAfterAnimation() : this.runEndGameFunctions();
+    if (this.state.userWinCount === this.state.scoreNeededToWin ){
+      this.runEndGameFunctions();
+    }
   }
 
   displayRoundResultAfterAnimation = () => {
@@ -152,12 +156,16 @@ class App extends Component {
   }
 
   runEndGameFunctions = () => {
-    this.displayEndGameScreen();
     this.addPlayerToFireBase();
+    setTimeout(() => {
+      this.displayEndGameScreen();
+    }, 20000);
   }
 
   displayEndGameScreen = () => {
-    console.log('end game screen display')
+    this.setState({
+      endGameDisplayed: true
+    })
   }
 
   addPlayerToFireBase = () => {
@@ -171,12 +179,16 @@ class App extends Component {
   }
   
   getTopPlayerData = () => {
-    const newArray = Object.values(this.state.endGamePlayerData).sort((a, b) => a.score - b.score);
-    console.log(newArray[0])
-    this.setState({
-      topPlayerName: newArray[0].name,
-      topPlayerScore: newArray[0].score
-    })
+    if ((this.state.endGamePlayerData)) {
+      const newArray = Object.values(this.state.endGamePlayerData).sort((a, b) => a.score - b.score);
+      console.log(newArray[0])
+      this.setState({
+        topPlayerName: newArray[0].name,
+        topPlayerScore: newArray[0].score
+      })
+      console.log(this.state.topPlayerName);
+      console.log(this.state.topPlayerScore);
+    }
     
   }
 
@@ -233,7 +245,15 @@ class App extends Component {
           /> : ""}
         </section>
         <section>
-          <EndGame />
+          {this.state.endGameDisplayed ?
+          // console.log('false')
+          <EndGame
+          score={this.state.totalThrows}
+          name={this.state.nickName}
+          topPlayerName={this.state.topPlayerName}
+          topPlayerScore={this.state.topPlayerScore}
+          /> 
+          : ""}
         </section>
         
       </div>
@@ -243,10 +263,11 @@ class App extends Component {
   componentDidMount(){
     // const dbRef = firebase.database().ref('/leaderBoard');
     dbRef.on('value', (snapshot) => {
-      console.log(snapshot.val());
+      console.log('new data in firebase', snapshot.val());
       this.setState({
         endGamePlayerData: snapshot.val()
-      })      
+      });
+      console.log('new data in state', this.endGamePlayerData);
       this.getTopPlayerData();
     });
     

@@ -369,3 +369,17 @@ h2 {
           width: 90%;
           top: 5%;
           left: 4%; }
+
+.endGame {
+  position: absolute;
+  z-index: 9;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  background: #4791ff; }
+  .endGame__content {
+    margin: auto;
+    font-size: 4rem;
+    color: #ffd97d; }
