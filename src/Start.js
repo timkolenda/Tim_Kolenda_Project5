@@ -13,7 +13,8 @@ const Start = (props) => {
             <form className="front-page__form"    action="">
                 <label htmlFor="nickName">Enter a nickname</label>
                 <input onChange={props.handleChange} type="text" id="nickName" val={props.nickName}/>
-                <button className="buttonStyling" onClick={props.handleClick} >Start Game</button>
+                <button className="buttonStyling" onClick={props.handleClick}
+                >Start Game</button>
             </form>
           </div>
         </div> 

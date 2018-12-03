@@ -277,8 +277,7 @@ h2 {
   .userOptions__button {
     width: 18%;
     border: none;
-    border-radius: 10px;
-    box-shadow: 2px 2px #020202; }
+    border-radius: 10px; }
     .userOptions__button--rock {
       background-color: #ee6055; }
     .userOptions__button--paper {
@@ -326,7 +325,6 @@ h2 {
       .playerCards .cardContainer .playerCards__cardFlipper .card {
         background-color: #c6c5ec;
         border-radius: 5%;
-        border: 1px black solid;
         height: 200px;
         width: 200px;
         backface-visibility: hidden;
@@ -383,3 +381,5 @@ h2 {
     margin: auto;
     font-size: 4rem;
     color: #ffd97d; }
+    .endGame__content span {
+      color: #ee6055; }

@@ -27,7 +27,7 @@ class App extends Component {
       userWinCount: 0,
       tieCount: 0,
       totalThrows: 0,
-      scoreNeededToWin: 2,
+      scoreNeededToWin: 5,
       currentLeader: {},
       options: options,
       resultsDisplayed: false,
@@ -50,7 +50,7 @@ class App extends Component {
     event.preventDefault();
     this.setState({
       onLandingPage: false
-    });
+    }
   }
 
   handleClickDisplayResult = (event) => {
@@ -70,6 +70,21 @@ class App extends Component {
     }, 1000); 
   }
 
+  handleClickEndGame = (event) => {
+    event.preventDefault();
+    this.setState({
+      nickName: "",
+      onLandingPage: true,
+      userChoice: "",
+      compChoice: "",
+      compWinCount: 0,
+      userWinCount: 0,
+      tieCount: 0,
+      totalThrows: 0,
+      endGameDisplayed: false,
+    });
+  };
+
   getUserChoice = (event) => {
     // console.log(event.target.value);
     this.setState({
@@ -84,6 +99,7 @@ class App extends Component {
     const compChoiceNumber = Math.floor(Math.random() * compChoiceKeys.length);
     this.setState({
       compChoice: compChoiceKeys[compChoiceNumber],
+      // compChoice: compChoiceKeys[0],
       compCardFlipped: true
     });
     this.resolveRound();
@@ -159,7 +175,7 @@ class App extends Component {
     this.addPlayerToFireBase();
     setTimeout(() => {
       this.displayEndGameScreen();
-    }, 20000);
+    }, 2000);
   }
 
   displayEndGameScreen = () => {
@@ -252,6 +268,7 @@ class App extends Component {
           name={this.state.nickName}
           topPlayerName={this.state.topPlayerName}
           topPlayerScore={this.state.topPlayerScore}
+          handleClick={this.handleClickEndGame}
           /> 
           : ""}
         </section>

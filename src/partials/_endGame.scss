@@ -12,5 +12,8 @@
         margin: auto;
         font-size: 4rem;
         color: $lizard-color;
+        span {
+            color: $rock-color;
+        }
     }
 }
