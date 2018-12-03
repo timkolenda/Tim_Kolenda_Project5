@@ -84,9 +84,10 @@
                 }
                 &--comp {
                     img {
+                        position: absolute;
                         width: 90%;
                         top: 5%;
-                        left: 4%;
+                        left: 6%;
                     }
                 }
             }
@@ -94,14 +95,13 @@
     }
 }
 
-@media(max-width: 500px){
-    .playerCards {
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-between;
-        .card {
-            width: 100px;
-            height: 100px;
-        }
-    }
-}
+// @media(max-width: 500px){
+//     .playerCards {
+//         width: 150px;
+//         h150
+//     }
+//     .playerCards .cardContainer .playerCards__cardFlipper .card {
+//         width: 150px;
+//         height: 150px;
+//     }
+// }

@@ -179,7 +179,16 @@ class App extends Component {
   }
 
   runEndGameFunctions = () => {
+    // debugger;
     this.addPlayerToFireBase();
+    // console.log('end game function');
+    // const newPlayer = {
+    //   name: this.state.nickName,
+    //   score: this.state.totalThrows,
+    //   // date: new Date()
+    // }
+    // const dbRef = firebase.database().ref('/leaderBoard');
+    // dbRef.push(newPlayer);
     setTimeout(() => {
       this.displayEndGameScreen();
     }, 2000);
@@ -192,6 +201,7 @@ class App extends Component {
   }
 
   addPlayerToFireBase = () => {
+    console.log('push to firebase')
     const newPlayer = {
       name: this.state.nickName,
       score: this.state.totalThrows,
@@ -288,10 +298,11 @@ class App extends Component {
     // const dbRef = firebase.database().ref('/leaderBoard');
     dbRef.on('value', (snapshot) => {
       console.log('new data in firebase', snapshot.val());
+      const newEndGamePlayerData = Object.assign({}, snapshot.val())
       this.setState({
-        endGamePlayerData: snapshot.val()
+        endGamePlayerData: newEndGamePlayerData
       });
-      console.log('new data in state', this.endGamePlayerData);
+      console.log('new data in state', this.state.endGamePlayerData);
       this.getTopPlayerData();
     });
     

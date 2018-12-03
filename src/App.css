@@ -368,18 +368,10 @@ h2 {
           width: 55%;
           top: 5%; }
         .playerCards .cardContainer .playerCards__cardFlipper .card--comp img {
+          position: absolute;
           width: 90%;
           top: 5%;
-          left: 4%; }
-
-@media (max-width: 500px) {
-  .playerCards {
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between; }
-    .playerCards .card {
-      width: 100px;
-      height: 100px; } }
+          left: 6%; }
 
 .endGame {
   position: absolute;
