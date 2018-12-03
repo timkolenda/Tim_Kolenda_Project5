@@ -271,6 +271,10 @@ h2 {
         .header__scoreTrackerContainer .score p {
           margin: 0; }
 
+@media (max-width: 800px) {
+  .header__title {
+    display: none; } }
+
 .userOptions {
   display: flex;
   justify-content: space-between; }
@@ -367,6 +371,15 @@ h2 {
           width: 90%;
           top: 5%;
           left: 4%; }
+
+@media (max-width: 500px) {
+  .playerCards {
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between; }
+    .playerCards .card {
+      width: 100px;
+      height: 100px; } }
 
 .endGame {
   position: absolute;

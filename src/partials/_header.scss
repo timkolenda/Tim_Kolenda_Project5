@@ -19,9 +19,6 @@
             font-weight: 600;
         }
     }
-    &__title{
-        // flex-grow: 1;
-    }
     &__scoreTracker{
         flex: 1 0 20px;
         display: flex;
@@ -69,5 +66,12 @@
                 }
             }
         }
+    }
+}
+
+
+@media(max-width: 800px){
+    .header__title {
+        display: none;
     }
 }

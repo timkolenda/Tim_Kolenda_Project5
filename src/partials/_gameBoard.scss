@@ -93,3 +93,15 @@
         }
     }
 }
+
+@media(max-width: 500px){
+    .playerCards {
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        .card {
+            width: 100px;
+            height: 100px;
+        }
+    }
+}

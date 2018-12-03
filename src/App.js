@@ -48,8 +48,14 @@ class App extends Component {
 
   handleClickStart = (event) => {
     event.preventDefault();
-    this.setState({
-      onLandingPage: false
+    console.log(this.state.nickName);
+    // if (!this.state.nickName === '' && !this.state.nickName.includes(' '))
+    if (this.state.nickName !== '' && !this.state.nickName.includes(' ')){
+      this.setState({
+        onLandingPage: false
+      })
+    } else {
+      alert('Please enter a Nickname.');
     }
   }
 
@@ -61,7 +67,6 @@ class App extends Component {
       compCardFlipped: false
     });
     this.calculateGameEnd();
-    //REMOVED ACTIVE FLIPPED ANIMATION HERE BEFORE CHOICE SET HAPPENS
     setTimeout(() => {
       this.setState({
         userChoice: "",
@@ -86,23 +91,25 @@ class App extends Component {
   };
 
   getUserChoice = (event) => {
-    // console.log(event.target.value);
     this.setState({
       userChoice: event.target.value,
       userCardFlipped: true
     });
-    // console.log(this.state.userChoice);
   }
 
   getCompChoice = (event) => {
     const compChoiceKeys = Object.keys(this.state.options);
     const compChoiceNumber = Math.floor(Math.random() * compChoiceKeys.length);
-    this.setState({
-      compChoice: compChoiceKeys[compChoiceNumber],
-      // compChoice: compChoiceKeys[0],
-      compCardFlipped: true
-    });
-    this.resolveRound();
+    if (this.state.userChoice !== ""){
+      this.setState({
+        compChoice: compChoiceKeys[compChoiceNumber],
+        // compChoice: compChoiceKeys[0],
+        compCardFlipped: true
+      });
+      this.resolveRound();
+    } else {
+      alert('Please make a selection before you play.')
+    }
   }
 
   resolveRound = () => {
