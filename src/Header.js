@@ -11,12 +11,12 @@ import Counter from './Counter';
 const Header = (props) => {
     return (
         <div className="header">
-            <div className="header__leaderBoard">
+            <div className="header__options">
                 <div>
-                    <p>Current High Score</p>
+                    <button className="buttonStyling" onClick={props.handleClickShowLeaderboard}>Leaderboard</button>
                 </div>
                 <div>
-                    <p>Name: <span>{props.topPlayerName}</span> Score: <span>{props.topPlayerScore}</span></p>
+                    <button className="buttonStyling" onClick={props.handleClickDisplayInstructions}>How to play</button>
                 </div>
             </div>
             <div className="header__title appName">

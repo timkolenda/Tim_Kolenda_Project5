@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import firebase from './firebase';
+import swal from 'sweetalert';
 import options from './options';
 import UserSelections from './UserSelections';
 import Header from './Header';
@@ -8,9 +9,11 @@ import GameBoard from './GameBoard';
 import Start from './Start';
 import DisplayResult from './DisplayResult';
 import EndGame from './EndGame';
+import LeaderBoard from './LeaderBoard';
+import Instructions from './Instructions';
 
 
-const dbRef = firebase.database().ref();
+const dbRef = firebase.database().ref('/');
 
 class App extends Component {
   constructor(){
@@ -20,7 +23,7 @@ class App extends Component {
       topPlayerScore: 0,
       endGamePlayerData: {},
       nickName: "",
-      onLandingPage: true,
+      onLandingPage: false,
       userChoice: "",
       compChoice: "",
       compWinCount: 0,
@@ -36,7 +39,12 @@ class App extends Component {
       userCardFlipped: false,
       compCardFlipped: false,
       userImg: { img: 'assets/noun_puppy_1963353.svg', alt: 'Default user image. A cute puppy.', customClass: '--user'},
-      compImg: { img: 'assets/noun_Robot_855943.svg', alt: 'Default computer image. A cute robot!', customClass: '--comp' }
+      compImg: { img: 'assets/noun_Robot_855943.svg', alt: 'Default computer image. A cute robot!', customClass: '--comp' },
+      showLeaderBoard: false,
+      displayInstructions: false,
+      userCardsRemaining: { rock: 5, scissors: 5, paper: 5, lizard: 5, spock: 5 },
+      compCardsRemaining: { rock: 5, scissors: 5, paper: 5, lizard: 5, spock: 5 },
+      userChoiceDisabled: false
     }
   }
   
@@ -75,6 +83,20 @@ class App extends Component {
     }, 1000); 
   }
 
+  handleClickShowLeaderboard = (event) => {
+    event.preventDefault();
+    this.setState({
+      showLeaderBoard: !this.state.showLeaderBoard
+    });
+  }
+
+  handleClickDisplayInstructions = (event) => {
+    event.preventDefault();
+    this.setState({
+      displayInstructions: !this.state.displayInstructions
+    });
+  }
+
   handleClickEndGame = (event) => {
     event.preventDefault();
     this.setState({
@@ -91,19 +113,29 @@ class App extends Component {
   };
 
   getUserChoice = (event) => {
-    this.setState({
-      userChoice: event.target.value,
-      userCardFlipped: true
-    });
+    if (this.state.userCardsRemaining[event.target.value] === 0) {
+      alert('Please Choose another Card');
+    } else {
+      const newObject = this.state.userCardsRemaining;
+      newObject[event.target.value] = newObject[event.target.value] - 1;
+      this.setState({
+        userChoice: event.target.value,
+        userCardFlipped: true,
+        userCardsRemaining: newObject,
+        userChoiceDisabled: true
+      });
+    }
   }
 
   getCompChoice = (event) => {
     const compChoiceKeys = Object.keys(this.state.options);
     const compChoiceNumber = Math.floor(Math.random() * compChoiceKeys.length);
+    const newObject = this.state.compCardsRemaining;
+    newObject[compChoiceKeys[compChoiceNumber]] = newObject[compChoiceKeys[compChoiceNumber]] - 1;
     if (this.state.userChoice !== ""){
       this.setState({
         compChoice: compChoiceKeys[compChoiceNumber],
-        // compChoice: compChoiceKeys[0],
+        compCardsRemaining: newObject,
         compCardFlipped: true
       });
       this.resolveRound();
@@ -248,6 +280,8 @@ class App extends Component {
           totalThrows={this.state.totalThrows}
           topPlayerName={this.state.topPlayerName}
           topPlayerScore={this.state.topPlayerScore}
+          handleClickShowLeaderboard={this.handleClickShowLeaderboard}
+          handleClickDisplayInstructions={this.handleClickDisplayInstructions}
           // endGamePlayerData={this.state.endGamePlayerData}
           // getTopPlayer={this.getTopPlayer}
           /> 
@@ -266,6 +300,7 @@ class App extends Component {
               type={this.state.options[option].type} 
               img={this.state.options[option].img}
               getUserChoice={this.getUserChoice}
+              userChoiceDisabled={this.state.userChoiceDisabled}
               />
             })}
           </section>
@@ -289,7 +324,16 @@ class App extends Component {
           /> 
           : ""}
         </section>
-        
+        <section>
+          {this.state.showLeaderBoard ? 
+          <LeaderBoard 
+          /> : ""}
+        </section>
+        <section>
+          {this.state.showLeaderBoard ?
+          <Instructions
+          /> : ""}
+        </section>
       </div>
     );
   }
