@@ -42,8 +42,8 @@ class App extends Component {
       compImg: { img: 'assets/noun_Robot_855943.svg', alt: 'Default computer image. A cute robot!', customClass: '--comp' },
       showLeaderBoard: false,
       displayInstructions: false,
-      userCardsRemaining: { rock: 5, scissors: 5, paper: 5, lizard: 5, spock: 5 },
-      compCardsRemaining: { rock: 5, scissors: 5, paper: 5, lizard: 5, spock: 5 },
+      userCardsRemaining: [{ rock: 1 }, { scissors: 1 }, { paper: 1 }, { lizard: 1 }, { spock: 1 }],
+      compCardsRemaining: [{ rock: 1 }, { scissors: 1 }, { paper: 1 }, { lizard: 1 }, { spock: 1 }],
       userChoiceDisabled: false
     }
   }
@@ -78,7 +78,8 @@ class App extends Component {
     setTimeout(() => {
       this.setState({
         userChoice: "",
-        compChoice: ""
+        compChoice: "",
+        userChoiceDisabled: false
       });
     }, 1000); 
   }
@@ -112,22 +113,34 @@ class App extends Component {
     });
   };
 
+  
+
   getUserChoice = (event) => {
-    if (this.state.userCardsRemaining[event.target.value] === 0) {
-      alert('Please Choose another Card');
+    const selection = event.target.value;
+    if (this.state.userCardsRemaining[this.state.options[selection].index][selection] === 0) {
+      alert('Please Choose another Card'); 
     } else {
-      const newObject = this.state.userCardsRemaining;
-      newObject[event.target.value] = newObject[event.target.value] - 1;
+      const newArray = this.state.userCardsRemaining;
+      newArray[this.state.options[selection].index][selection] = newArray[this.state.options[selection].index][selection] - 1;
       this.setState({
         userChoice: event.target.value,
         userCardFlipped: true,
-        userCardsRemaining: newObject,
+        userCardsRemaining: newArray,
         userChoiceDisabled: true
       });
     }
   }
 
   getCompChoice = (event) => {
+    // this.state.compCardsRemaining.forEach((cardStack) => {
+    //   if (cardStack[Object.keys(cardStack)[0]] === 0) {
+    //     const newObject = this.state.options;
+    //     delete newObject[cardStack[Object.keys(cardstack)]];
+    //     this.setState({
+    //       options: newObject
+    //     });
+    //   }
+    // });
     const compChoiceKeys = Object.keys(this.state.options);
     const compChoiceNumber = Math.floor(Math.random() * compChoiceKeys.length);
     const newObject = this.state.compCardsRemaining;
